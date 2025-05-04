@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "35856844663",
+    "project_id": "synote-msherazsadiq",
+    "storage_bucket": "synote-msherazsadiq.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:35856844663:android:f59cd39c8125f06a9ac372",
+        "android_client_info": {
+          "package_name": "com.sherazsadiq.synote"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB5mGxwOuGyf5VXHJ1bgROicCj594Usxzw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
