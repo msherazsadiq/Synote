@@ -136,10 +136,10 @@ class FirebaseRepository {
     }
 
 
-    suspend fun toggleFavorite(noteId: String, isFavorite: Boolean): ResultState<String> {
+    suspend fun toggleFavorite(noteId: String, favorite: Boolean): ResultState<String> {
         return try {
             firestore.collection("notes").document(noteId)
-                .update("isFavorite", isFavorite).await()
+                .update("favorite", favorite).await()
             ResultState.Success("Favorite status updated")
         } catch (e: Exception) {
             ResultState.Error(e.message ?: "Error updating favorite")

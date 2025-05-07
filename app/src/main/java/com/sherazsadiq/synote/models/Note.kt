@@ -9,7 +9,7 @@ data class Note(
     val title: String = "",
     val content: String = "",
     val timestamp: Long = System.currentTimeMillis(),
-    val isFavorite: Boolean = false,
+    val favorite: Boolean = false,
     val userId: String = "",
     val labels: List<String> = emptyList(),
     val tags: List<String> = emptyList()

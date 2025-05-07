@@ -10,11 +10,12 @@ import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 
+
 class NoteAdapter(
     private val notes: MutableList<Note>,
     private val onNoteClick: (Note) -> Unit,
     private val onNoteDelete: (Note) -> Unit,
-    private val onFavoriteToggle: (Note) -> Unit
+    private val onFavoriteToggle: (Note, Int) -> Unit
 ) : RecyclerView.Adapter<NoteAdapter.NoteViewHolder>() {
 
     inner class NoteViewHolder(private val binding: ItemNoteBinding) : RecyclerView.ViewHolder(binding.root) {
@@ -26,10 +27,10 @@ class NoteAdapter(
             binding.dateText.text = sdf.format(Date(note.timestamp))
 
             // Show/hide star icon
-            binding.favIcon.visibility = if (note.isFavorite) View.VISIBLE else View.GONE
+            binding.favIcon.visibility = if (note.favorite) View.VISIBLE else View.GONE
 
-            // Set button label based on isFavorite
-            binding.favoriteButton.text = if (note.isFavorite) "Remove Favorite" else "Add to Favorite"
+            // Set button label based on favorite
+            binding.favoriteButton.text = if (note.favorite) "Remove Favorite" else "Add to Favorite"
 
             binding.buttonContainer.visibility = View.GONE
 
@@ -45,10 +46,9 @@ class NoteAdapter(
             }
 
             binding.favoriteButton.setOnClickListener {
-                onFavoriteToggle(note)
+                onFavoriteToggle(note, adapterPosition)
             }
         }
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NoteViewHolder {
@@ -62,7 +62,10 @@ class NoteAdapter(
 
     override fun getItemCount(): Int = notes.size
 
-    fun getNotes(): List<Note> = notes
+    fun updateNoteAtPosition(position: Int, updatedNote: Note) {
+        notes[position] = updatedNote
+        notifyItemChanged(position)
+    }
 
     fun updateNotes(newNotes: List<Note>) {
         notes.clear()

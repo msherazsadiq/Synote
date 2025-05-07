@@ -37,11 +37,13 @@ class NoteViewModel : ViewModel() {
         }
     }
 
-    fun toggleFavorite(noteId: String, isFavorite: Boolean) {
+    fun toggleFavorite(noteId: String, favorite: Boolean) {
         viewModelScope.launch {
-            val result = firebaseRepository.toggleFavorite(noteId, isFavorite)
+            val result = firebaseRepository.toggleFavorite(noteId, favorite)
             if (result is ResultState.Success) {
                 _toastMessage.value = "Favorite toggled"
+                // Reload notes after the update
+                getCurrentUserId()?.let { startListeningToNotes(it) }
             } else {
                 _toastMessage.value = "Failed to toggle favorite"
             }

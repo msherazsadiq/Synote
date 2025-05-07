@@ -122,7 +122,7 @@ class NoteEditorActivity : AppCompatActivity() {
             userId = userId,
             labels = labelList,
             tags = tagList,
-            timestamp = System.currentTimeMillis()
+            timestamp = System.currentTimeMillis(),
         )
 
         lifecycleScope.launch {
