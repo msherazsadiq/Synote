@@ -1,13 +1,17 @@
 package com.sherazsadiq.synote.models
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class Note(
-    val id: String = "",                         // Firestore Document ID
+    val id: String? = null,
     val title: String = "",
     val content: String = "",
     val timestamp: Long = System.currentTimeMillis(),
-    val isFavourite: Boolean = false,
-    val userId: String = "",                     // Used in Firestore rules
-    val labels: List<String> = emptyList(),      // Optional: e.g., ["Work", "Ideas"]
-    val tags: List<String> = emptyList()         // Optional: e.g., ["urgent", "2025"]
+    val isFavorite: Boolean = false,
+    val userId: String = "",
+    val labels: List<String> = emptyList(),
+    val tags: List<String> = emptyList()
+) : Parcelable
 
-)
